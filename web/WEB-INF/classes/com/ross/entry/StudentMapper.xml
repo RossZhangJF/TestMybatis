@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ross.dao.StudentDao">
+
+    <select id="getStudentByMap" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{stuID} and stu_sex = #{stuSex} and class_id = #{classID}
+    </select>
+
+    <select id="getStudentByIdAndClassId" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{param1}  and class_id = #{param2}
+    </select>
+
+    <!--
+     根据ID查询数据库中的数据
+     -->
+    <select id="getStudent" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{stuId}
+    </select>
+
+    <insert id="addStudent">
+        insert into student value (#{stuId},#{stuName},#{stuSex},#{stuAge},#{stuHeight},#{stuScore},#{classId})
+    </insert>
+
+    <update id="updateStudent">
+        update student set
+                        stu_id = #{stuId},stu_name = #{stuName},stu_sex = #{stuSex}, stu_age = #{stuAge} ,
+                        stu_height = #{stuHeight},stu_scroe = #{stuScroe},class_id = #{classId}
+        where stu_id=#{stuId}
+    </update>
+</mapper>
