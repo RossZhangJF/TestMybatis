@@ -1,17 +1,28 @@
 package com.ross.entry;
 
+import java.util.List;
+
 public class MyClass {
     private Integer classId;
     private String className;
     private String classHandth;
-
+    private List<Student> students;
     public MyClass() {
     }
 
-    public MyClass(Integer classId, String className, String classHandth) {
+    public MyClass(Integer classId, String className, String classHandth, List <Student> students) {
         this.classId = classId;
         this.className = className;
         this.classHandth = classHandth;
+        this.students = students;
+    }
+
+    public List <Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List <Student> students) {
+        this.students = students;
     }
 
     public Integer getClassId() {
@@ -44,6 +55,7 @@ public class MyClass {
                 "classId=" + classId +
                 ", className='" + className + '\'' +
                 ", classHandth='" + classHandth + '\'' +
+                ", students=" + students +
                 '}';
     }
 }

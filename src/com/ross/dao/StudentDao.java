@@ -39,5 +39,5 @@ public interface StudentDao {
 
     public Student getStudentAndClass(Integer stuId);
     public Student getStudentAndClassByClassId(Integer stuId);
-
+    public Student getStudentOrClassId(Integer classId);
 }

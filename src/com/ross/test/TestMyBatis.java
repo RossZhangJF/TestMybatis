@@ -23,33 +23,12 @@ public class TestMyBatis {
             SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession session = sqlSessionFactory.openSession();
             MyClassDao claDao=session.getMapper(MyClassDao.class);
+            /*
             MyClass myClass=claDao.getMyClass(1901);
             System.out.println(myClass);
-//            Student student= stuDao.getStudent(2);
-//            Student student=stuDao.getStudentByIdAndClassId(2,1901);
-
-            /*
-            Map<String ,Object> map=new HashMap <>();
-            map.put("stuID",1);
-            map.put("stuSex","男");
-            map.put("classID","1901");
-            Student student=stuDao.getStudentByMap(map);
-            System.out.println(student);
-            */
-
-           /*
-           Student student=new Student(5,"张无忌","男",49,160,94,1901);
-            boolean b=stuDao.addStudent(student);
-            session.commit();  //提交
-            System.out.println(b);
-            */
-           /*
-           Student student=new Student(5,"包拯","男",18,180,99,1902);
-           boolean b=stuDao.updateStudent(student);
-           session.commit();
-            System.out.println(b);
-            */
-
+           */
+            MyClass myClass=claDao.getMyClassByClassIdGetStudent(1902);
+            System.out.println(myClass);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ross.dao.StudentDao">
 
+    <select id="getStudentOrClassId" resultType="student">
+        select * from student where class_id = #{classId}
+    </select>
+
     <resultMap type="student" id="testStep" >
         <id column="stu_id" property="stuId"></id>
         <result column="stu_name" property="stuName"></result>

@@ -3,8 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ross.dao.MyClassDao">
-    <select id="getMyClass" resultType="myclass">
+    <select id="getMyClass" resultType="myClass">
         select * from my_class where class_id = #{classId}
+    </select>
+
+    <resultMap id="testMyClass" type="myClass">
+        <id column="class_id" property="classId"></id>
+        <result column="class_name" property="className"></result>
+        <result column="class_handth" property="classHandth"></result>
+        <association property="students" column="class_id"
+                     select="com.ross.dao.StudentDao.getStudentOrClassId"></association>
+    </resultMap>
+    
+    <select id="getMyClassByClassIdGetStudent" resultMap="testMyClass">
+        select  * from my_class where class_id = #{classId}
     </select>
 
 </mapper>
