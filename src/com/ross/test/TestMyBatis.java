@@ -1,6 +1,8 @@
 package com.ross.test;
 
+import com.ross.dao.MyClassDao;
 import com.ross.dao.StudentDao;
+import com.ross.entry.MyClass;
 import com.ross.entry.Student;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -20,7 +22,9 @@ public class TestMyBatis {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession session = sqlSessionFactory.openSession();
-            StudentDao stuDao=session.getMapper(StudentDao.class);
+            MyClassDao claDao=session.getMapper(MyClassDao.class);
+            MyClass myClass=claDao.getMyClass(1901);
+            System.out.println(myClass);
 //            Student student= stuDao.getStudent(2);
 //            Student student=stuDao.getStudentByIdAndClassId(2,1901);
 
@@ -39,10 +43,12 @@ public class TestMyBatis {
             session.commit();  //提交
             System.out.println(b);
             */
+           /*
            Student student=new Student(5,"包拯","男",18,180,99,1902);
            boolean b=stuDao.updateStudent(student);
            session.commit();
             System.out.println(b);
+            */
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ross.dao.StudentDao">
+
+    <resultMap type="student" id="testStep" >
+        <id column="stu_id" property="stuId"></id>
+        <result column="stu_name" property="stuName"></result>
+        <result column="stu_sex" property="stuSex"></result>
+        <result column="stu_age" property="stuAge"></result>
+        <result column="stu_height" property="stuHeight"></result>
+        <result column="stu_score" property="stuScore"></result>
+        <!--<result column="my_class" property="myClass"></result>-->
+        <association property="myClass" column="class_id" javaType="MyClass"
+                     select="com.ross.dao.MyClassDao.getMyClass"></association>
+    </resultMap>
+    <select id="getStudentAndClassByClassId" resultMap="testStep">
+        select *   from student where stu_id = #{stuId}
+    </select>
+
+
+    <resultMap id="studentClass" type="student">
+            <id column="stu_id" property="stuId"></id>
+            <result column="stu_name" property="stuName"></result>
+            <result column="stu_sex" property="stuSex"></result>
+            <result column="stu_age" property="stuAge"></result>
+            <result column="stu_height" property="stuHeight"></result>
+            <result column="stu_score" property="stuScore"></result>
+            <!--<result column="my_class" property="myclass"></result>-->
+    </resultMap>
+
+    <select id="getStudentAndClass" resultMap="studentClass">
+        select * from student s inner join my_class m on s.class_id = m.class_id where stu_id = #{stuId}
+    </select>
+
+    <select id="getStudentList" resultType="student">
+        select * from student
+    </select>
+    <select id="getStudentListOrMap" resultType="map">
+        select * from student
+    </select>
+    <select id="getStudentListOrMapAndList" resultType="map">
+        select * from student
+    </select>
+    <select id="getStudentLike" resultType="student">
+        select * from student where stu_name like #{str}
+    </select>
+
+
+    <select id="getStudentMapByName" resultType="map">
+        select * from student
+    </select>
+
+    <select id="getStudentMapById" resultType="map">
+        select * from student where stu_id = #{id}
+    </select>
+    <select id="getStudentMapAll" resultType="map">
+        select * from student
+    </select>
+
+    <select id="getStudentByMap" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{stuID} and stu_sex = #{stuSex} and class_id = #{classID}
+    </select>
+
+    <select id="getStudentByIdAndClassId" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{param1}  and class_id = #{param2}
+    </select>
+
+    <!--
+     根据ID查询数据库中的数据
+     -->
+    <select id="getStudent" resultType="com.ross.entry.Student">
+        select * from student where stu_id = #{stuId}
+    </select>
+
+    <insert id="addStudent">
+        insert into student value (#{stuId},#{stuName},#{stuSex},#{stuAge},#{stuHeight},#{stuScore},#{classId})
+    </insert>
+
+    <update id="updateStudent">
+        update student set
+                        stu_id = #{stuId},stu_name = #{stuName},stu_sex = #{stuSex}, stu_age = #{stuAge} ,
+                        stu_height = #{stuHeight},stu_scroe = #{stuScroe},class_id = #{classId}
+        where stu_id=#{stuId}
+    </update>
+</mapper>

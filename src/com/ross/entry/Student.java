@@ -10,16 +10,16 @@ public class Student implements Serializable {
     private Integer stuAge;
     private Integer stuHeight;
     private Integer stuScroe;
-    private Integer classId;
+    private MyClass myClass;
 
-    public Student(Integer stuId, String stuName, String stuSex, Integer stuAge, Integer stuHeight, Integer stuScroe, Integer stuClassId) {
+    public Student(Integer stuId, String stuName, String stuSex, Integer stuAge, Integer stuHeight, Integer stuScroe, MyClass myClass) {
         this.stuId = stuId;
         this.stuName = stuName;
         this.stuSex = stuSex;
         this.stuAge = stuAge;
         this.stuHeight = stuHeight;
         this.stuScroe = stuScroe;
-        this.classId = stuClassId;
+        this.myClass = myClass;
     }
 
     public Integer getStuId() {
@@ -70,12 +70,12 @@ public class Student implements Serializable {
         this.stuScroe = stuScore;
     }
 
-    public Integer getStuClassId() {
-        return classId;
+    public MyClass getMyClass() {
+        return myClass;
     }
 
-    public void setStuClassId(Integer stuClassId) {
-        this.classId = stuClassId;
+    public void setMyClass(MyClass myClass) {
+        this.myClass = myClass;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Student implements Serializable {
                 ", stuAge=" + stuAge +
                 ", stuHeight=" + stuHeight +
                 ", stuScroe=" + stuScroe +
-                ", classId=" + classId +
+                ", myClass=" + myClass +
                 '}';
     }
 
